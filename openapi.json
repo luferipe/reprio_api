@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "GraphQL API",
+    "version": "1.0.0",
+    "description": "Documentação para o endpoint GraphQL."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/graphql",
+      "description": "Endpoint GraphQL"
+    }
+  ],
+  "paths": {
+    "/graphql": {
+      "post": {
+        "summary": "Executar consultas GraphQL",
+        "description": "Envie queries e mutations para o servidor GraphQL.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Consulta GraphQL"
+                  },
+                  "variables": {
+                    "type": "object",
+                    "description": "Variáveis para a consulta"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resposta bem-sucedida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

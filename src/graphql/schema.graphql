@@ -1,0 +1,511 @@
+type Address {
+  UF: String
+  bairro: String
+  cep: String
+  cidade: String
+  complemento: String
+  endereco: String
+  numero: String
+}
+
+type User {
+  id: ID!
+  aceito_termos: Boolean
+  admin_empresa: String  
+  aniversario_dia: String
+  aniversario_mes: String
+  cpf: String
+  created_time: String
+  display_name: String
+  email: String
+  empresa_ref: String  
+  endereco: Address
+  photo_url: String
+  receber_noticias: Boolean
+  rg: String
+  sobrenome: String
+  tipo_acesso_membro: String
+  uid: String
+  user_admin: Boolean
+  user_membro: Boolean
+}
+
+type Contato {
+  cargo: String
+  email: String
+  nome: String
+  telefone: String
+  user_ref: String
+}
+
+type Cliente {
+  id: ID!
+  bairro: String
+  cep: String
+  cnpj: String
+  cpf: String
+  cidade: String
+  complemento: String
+  ean: String
+  email_comercial: String
+  email_financeiro: String
+  endereco: String
+  inscricao_estadual: String
+  nome_completo: String
+  nome_fantasia: String
+  numero: String
+  observacoes: String
+  rg: String
+  razao_social: String
+  telefone_1: String
+  telefone_2: String
+  telefone_3: String
+  telefone_4: String
+  tipo_cliente: String
+  uf: String
+  data_criacao: String
+  empresa_ref: String
+  user_ref: String
+  contatos: [Contato]
+}
+
+type EnderecoEmpresa {
+  uf: String
+  bairro: String
+  cep: String
+  cidade: String
+  complemento: String
+  endereco: String
+  numero: String
+}
+
+type Empresa {
+  id: ID!
+  cnpj: String
+  ean: String
+  admin_empresa: String
+  endereco_empresa: EnderecoEmpresa
+  inscricao_estadual: String
+  logo: String
+  nome_fantasia: String
+  onbording_empresa: Boolean
+  ramo_atividade: String
+  razao_social: String
+}
+
+type Permissoes {
+  acesso_aplicativo: Boolean
+  cadastrar_novos_clientes: Boolean
+  enviar_pedido_cliente_bloqueado: Boolean
+  visualizar_totais_pedidos: Boolean
+}
+
+type RepresentadaEquipe {
+  codigo: Int
+  nome_representada: String
+  status: Boolean
+  equipe_ref: String
+  ref_representada: String
+}
+
+type Equipe {
+  id: ID!
+  aniversario_dia: String
+  aniversario_mes: String
+  bairro: String
+  cep: String
+  cpf: String
+  cidade: String
+  complemento: String
+  data_criacao: String
+  email: String
+  email_user: String
+  endereco: String
+  nome_completo: String
+  numero: String
+  observacoes: String
+  permissoes: Permissoes
+  rg: String
+  repasse_colaborador: Float
+  status: Boolean
+  telefone_1: String
+  tipo_usuario: String
+  uf: String
+  codigo_usuario: String
+  colaborador: String
+  empresa_ref: String
+  user_ref: String
+  representadas_equipe: [RepresentadaEquipe]
+}
+
+type RepresentadaMeta {
+  empresa_ref: String
+  representada_ref: String
+}
+
+type MesMeta {
+  mes: Int
+  valor: Float
+}
+
+type Meta {
+  id: ID!
+  ano: String
+  representada: RepresentadaMeta
+  meses: [MesMeta]
+}
+
+type PrecosTabela {
+  nome_tabela: String
+  preco: Float
+  preco_promocional: Float
+  produto_ref: String
+  status: Boolean
+  tabela_ref: String
+}
+
+type Produto {
+  id: ID!
+  cod_sku: String
+  categoria: String
+  codigo_barras: String
+  comissao: Float
+  cubagem: Float
+  img_produto: String
+  ipi: Float
+  ncm: Float
+  nome: String
+  peso_bruto: Float
+  peso_liquido: Float
+  qtd_multiplos: Int
+  unidade: String
+  data_criacao: String
+  representada_ref: String
+  status: Boolean
+  precos_tabela: [PrecosTabela]
+}
+
+type Comercializacao {
+  acrescimo_max: Float
+  desconto_01: Float
+  desconto_02: Float
+  desconto_03: Float
+  desconto_04: Float
+  desconto_geral: Boolean
+  meta_igual_mes: Boolean
+  meta_mensalmente: Boolean
+  meta_todos_meses: Float
+}
+
+type Pagamentos {
+  regr_comissao_representante: Float
+  regr_comissao_vendedor: Float
+  regr_pag_representante_pedido: Float
+  regr_pag_representante_titulo: Float
+  regr_pag_vendedor_pedido: Float
+  regr_pag_vendedor_titulo: Float
+}
+
+type Parcela {
+  parcela: Int
+  qtd_dias: String
+}
+
+type Prazos {
+  desconto_extra: Float
+  nome_prazo: String
+  pedido_minimo: Float
+  valido_tabelas_selecionadas: Boolean
+  valido_todas_tabelas: Boolean
+  ativo: Boolean
+  parcelas: [Parcela]
+}
+
+type Tabela {
+  comissao_representante: Float
+  comissao_vendedor: Float
+  comissao_vendedor_separadamente: Boolean
+  desconto_01: Float
+  desconto_02: Float
+  desconto_03: Float
+  desconto_04: Float
+  nome_tabela: String
+  observacoes: String
+  validade_tabela: String
+  valido_todos_clientes: Boolean
+  codigo_na_representada: String
+  data_criacao: String
+  status: Boolean
+}
+
+type Vendedor {
+  ativar_limites_descontos_separadamente: Boolean
+  foto_perfil: String
+  nome_vendedor: String
+  p_desconto_itens_promo: Boolean
+  p_digitar_preco: Boolean
+  vendedor_ref: String
+  desconto1: Float
+  desconto2: Float
+  desconto3: Float
+  desconto4: Float
+  status: Boolean
+}
+
+type Representada {
+  id: ID!
+  cadastro: String
+  comercializacao: Comercializacao
+  email: String
+  endereco_bairro: String
+  endereco_cep: String
+  endereco_cidade: String
+  endereco_complemento: String
+  endereco_numero: String
+  endereco_rua: String
+  endereco_uf: String
+  nome_fantasia: String
+  pagamentos: Pagamentos
+  ramo_atividade: String
+  razao_social: String
+  site: String
+  status: Boolean
+  telefone_01: String
+  user_ref: String
+  cnpj: String
+  ean: String
+  empresa_ref: String
+  inscricao_estadual: String
+  logotipo: String
+  prazos: Prazos
+  tabela: Tabela
+  vendedor: Vendedor
+}
+
+type Transportadora {
+  id: ID!
+  bairro: String
+  cep: String
+  cnpj: String
+  cidade: String
+  complemento: String
+  ean: String
+  email_comercial: String
+  email_financeiro: String
+  endereco: String
+  inscricao_estadual: String
+  nome_fantasia: String
+  numero: String
+  razao_social: String
+  status: Boolean
+  telefone1: String
+  telefone2: String
+  telefone3: String
+  telefone4: String
+  uf: String
+  data_cadastro: String
+  empresa_ref: String
+}
+
+type PrecosEpagamentos {
+  st: Float
+  acrescimo_extra: Float
+  acrescimo_geral: Float
+  comissao_representante: Float
+  comissao_vendedor: Float
+  desconto_1: Float
+  desconto_2: Float
+  desconto_3: Float
+  desconto_4: Float
+  desconto_extra: Float
+  frete: Float
+  nome_prazo: String
+  pedido_ref: String
+  prazo_pagamento_data: String
+  prazo_pagamento_dia: Int
+  tabela_preco_nome: String
+  tabela_preco_ref: String
+}
+
+type ProdutosPedido {
+  codigo: String
+  imagem: String
+  ipi: Float
+  nome: String
+  pedido_ref: String
+  preco: Float
+  preco_liquido: Float
+  quantidade: Int
+  subtotal_liquido: Float
+  unidade: String
+}
+
+type Pedido {
+  id: ID!
+  acrescimo_total_db: Float
+  acrescimo_total_por_cento: Float
+  cliente_nome: String
+  cliente_ref: String
+  codigo_pedido: String
+  data: String
+  desconto_extra: Float
+  desconto_extra_por_cento: Float
+  desconto_total_db: Float
+  desconto_total_por_cento: Float
+  empresa_ref: String
+  frete: Float
+  observacao: String
+  origem_desconto: String
+  representada_nome: String
+  representada_ref: String
+  responsavel_nome: String
+  responsavel_ref: String
+  status_pedido: String
+  subtotal_db: Float
+  tipo_pedido: String
+  total_pedido: Float
+  transportadora_nome: String
+  transportadora_ref: String
+  user_ref: String
+  precos_e_pagamentos: PrecosEpagamentos
+  produtos_pedido: [ProdutosPedido]
+}
+
+type TotaisPorTipo {
+  tipo: String
+  total: Float
+  quantidade: Int
+}
+
+type Pagamento {
+  id: ID
+  regrComissaoRepresentante: Float
+  regrComissaoVendedor: Float
+}
+
+type Calculos {
+  valorMedioPropostas: Float
+  valorMedioVendas: Float
+  comissaoRepresentantePropostas: Float
+  comissaoRepresentanteVendas: Float
+  comissaoRepresentante: Float
+  comissaoVendedorPropostas: Float
+  comissaoVendedorVendas: Float
+  comissaoVendedor: Float
+}
+
+type GetPedidosByEmpresaResult {
+  pedidos: [Pedido]
+  totaisPorTipo: [TotaisPorTipo]
+  metaAtual: Float
+  pagamentos: [Pagamento]
+  calculos: Calculos
+}
+
+type ResumoRelatorio {
+  name: String
+  status: String
+  valor: Float
+}
+
+type PedidosRelatorio {
+  totalPropostas: Float
+  totalVendas: Float
+  totalVendasDia: Float
+  totalPedidos: Int
+  comissaoRepresentante: Float
+  comissaoVendedor: Float
+  metaAtual: Float
+  percentualMeta: Float
+  pedidos: [Pedido]
+  resumoPedidos: [ResumoRelatorio]
+}
+
+type ProgressMeta {
+  pedidos: [Pedido]
+}
+
+type TipoPedido {
+  tipo_pedido: String
+  pedidos: [Pedido]
+}
+
+type StatusPedido {
+  status_pedido: String
+  tipos_pedido: [TipoPedido]
+}
+
+type GetRelatorioFaturamentoResult {
+  agrupadoPorStatus: [StatusPedido]
+}
+
+type DataRelatorioFaturamento {
+  id: ID!
+  cliente_nome: String
+  status_pedido: String
+  tipo_pedido: String
+}
+
+type resultadoRelatorioFaturamento {
+  total_pedido: Float
+  total_venda: Float
+  total_orcamento: Float
+  vendas_hoje: Float
+  meta_mensal: Float
+  progresso_meta: String
+  comissao_faturada: Float
+  comissao_hoje: Float
+
+}
+
+type GetRelatorioFaturamentoResult {
+  pedidos: [DataRelatorioFaturamento]
+  resumo: [resultadoRelatorioFaturamento]
+}
+
+type Query {
+
+  # Relatorio Faturamento
+   getRelatorioFaturamento(empresa_ref: String!): GetRelatorioFaturamentoResult
+
+  # Users
+  getUsers: [User]
+  getUser(id: ID!): User
+
+  # Clientes
+  getClientes: [Cliente]
+  getCliente(id: ID!): Cliente
+
+  # Empresas
+  getEmpresas: [Empresa]
+  getEmpresa(id: ID!): Empresa
+
+  # Equipe
+  getEquipes: [Equipe]
+  getEquipe(id: ID!): Equipe
+
+  # Metas
+  getMetas: [Meta]
+  getMeta(id: ID!): Meta
+
+  # Produtos
+  getProdutos: [Produto]
+  getProduto(id: ID!): Produto
+
+  # Representadas
+  getRepresentadas: [Representada]
+  getRepresentada(id: ID!): Representada
+
+  # Transportadora
+  getTransportadoras: [Transportadora]
+  getTransportadora(id: ID!): Transportadora
+
+  # Pedidos | Globo |
+  getPedidos: [Pedido]
+  getPedido(id: ID!): Pedido
+  getPedidosByEmpresa(empresa_ref: String!): GetPedidosByEmpresaResult
+  getPedidosByEmpresaRef(empresa_ref: String!): [Pedido]
+  getPedidosRelatorio(empresa_ref: String!, data: String!): PedidosRelatorio
+  getProgressMeta(empresa_ref: String!): ProgressMeta
+  
+}

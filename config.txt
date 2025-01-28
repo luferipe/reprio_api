@@ -1,0 +1,11 @@
+Figma:
+https://www.figma.com/proto/fzOkArFnbnzxTLsJDRPWHf/3.-Reprio-Mobile---Cria%C3%A7%C3%A3o?node-id=6001-7843&starting-point-node-id=6073%3A4968
+
+** Resolver 
+[ ] Token para acesso api
+[ ] Cors
+[ ] Criar as querys das demais tabelas
+
+[ ] ** Contaner docker ** Final da criação da API
+
+smbclient -L 67.159.238.156 -U PROGWEB
